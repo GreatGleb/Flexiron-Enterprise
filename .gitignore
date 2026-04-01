@@ -1,0 +1,24 @@
+# IDE / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp
+tmp/
+temp/
+
+# Folders to exclude from public repo if needed
+node_modules/
+dist/
+build/
+design/
+toDo/
+xlx tables/
