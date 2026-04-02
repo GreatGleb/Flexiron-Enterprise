@@ -1,41 +1,54 @@
-# Flexiron Enterprise
+# Flexiron Enterprise — Interactive Demo
 
-**Flexiron Enterprise** is a next-generation Business Management Platform (SaaS) designed specifically for metal processing centers and industrial commerce. It combines advanced inventory management, smart logistics, and deep financial analytics into a unified, high-performance ecosystem.
+**Production Tech Stack:**
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+
+**Prototype Stack (This Repo):**
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) 
+![Vanilla JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+**Flexiron Enterprise** is a high-performance Business Management Platform (SaaS) designed for metal processing centers and industrial commerce. 
+
+This repository contains the **interactive frontend mockups and UI prototype**. While the complete production system is powered by a robust Python/FastAPI backend and a React/Next.js frontend, this specific repository showcases the user experience and visual workflows using Vanilla HTML/JS, allowing public demonstration without exposing proprietary backend code.
 
 ## 🚦 Live Demo
-The platform is successfully deployed and accessible via GitHub Pages:
+The platform prototype is deployed and fully accessible via GitHub Pages:
+
 **👉 [Open Flexiron ERP Demo](https://greatgleb.github.io/Flexiron-Enterprise/demo/public/)**
 
-## 🚀 Vision
-To replace fragmented legacy systems and spreadsheets with a cohesive "Business Operating System" that provides real-time visibility into every aspect of the metal business — from the first customer contact to the final P&L report.
+> **Note:** The demo supports full multi-language switching (EN, RU, LT) powered by our custom client-side translation engine.
 
-## 🛠 Project Structure
+## 📦 What's Inside
 
-- **`index.html`**: The main entry portal (Project Root).
-- **`demo/`**: Interactive high-fidelity mockups of the platform.
-    - **`public/`**: Public-facing website (Landing, About, Support, Register).
-    - **`admin/`**: The core ERP experience (Dashboard, Warehouse, Sales Analytics, etc.).
-    - **`assets/`**: Shared design system resources (Glassmorphism CSS, Icons, Images).
-- **`src/`**: Future home of the system's core engine and backend logic.
-- **`design/`**: Project documentation, sitemaps, and UI specifications.
-- **`toDo/`**: Business logic algorithms and development roadmap.
+- **`demo/public/`**: Public-facing entry points (Landing pages, Registration, Authorization, Support).
+- **`demo/admin/`**: The core interactive ERP modules and dashboards.
+- **`demo/assets/`**: Shared resources, javascript language libraries, and the central CSS design system.
 
-## 💎 Design Language: Glassmorphism Industrial
-The platform utilizes a "Frosted Glass" aesthetic to provide a modern, premium feel while maintaining the high data density required for professional industrial operations.
-- **Backdrop Blurs**: 12px - 28px
-- **Color Palette**: Deep Indigo (#0f172a), Primary Blue (#1890FF), Danger Red (#ff4d4f).
-- **Typography**: Inter (Clean, readable, professional).
+## 📊 Core Modules
 
-## 📊 Analytics Modules
-The demo includes a complete set of analytics dashboards (Block 8 in the Process Algorithm):
-1. **7.1 KPI Dashboard**: Overview of warehouse value, receivables, and profit.
-2. **7.2 Warehouse**: Dead stock tracking and turnover rates.
-3. **7.3 Sales**: Revenue analysis and conversion metrics.
-4. **7.4 Supply**: Vendor reliability and price dynamics.
-5. **7.5 Staff**: Performance-based KPI tracking.
-6. **7.6 Logistics**: Route profitability and vehicle load factors.
-7. **7.7 P&L**: Full income statement and 14-day payment calendar.
-8. **7.8 Deficit**: AI-driven purchase recommendations and stock-out alerts.
+The demo showcases the full lifecycle of the ERP system across key functional areas:
+- **1. Products (Master Data)**: Management of standard templates, categories, and custom services.
+- **2. Warehouse**: Real-time physical inventory, batch tracking, and warehouse map.
+- **3. Sales & CRM**: Order processing (Kanban/List), client database, and fleet logistics.
+- **4. Supplying**: Supplier database and Automated BCC price requests.
+- **5. Accounting**: Control of incoming/outgoing payments and PDF document archive.
+- **6. System Settings**: Zero-code document editor, roles (ACL), and system configurations.
+- **7. Analytics**: Executive dashboards, sales stats, turnover analysis, and P&L reports.
+
+## 💎 UI / UX Concept
+The user interface employs a responsive **"Industrial Glassmorphism"** aesthetic. Using frosted glass blurs, clean typography (Inter), and translucent layers over a dark indigo canvas, the design maintains a premium, modern feel without sacrificing the extreme data density required by B2B enterprise software.
+
+## 🛠 Running Locally
+
+Because this is a pure frontend implementation (HTML/CSS/Vanilla JS) without a server-side dependency, you can run it entirely locally:
+
+1. Clone the repository: `git clone https://github.com/GreatGleb/Flexiron-Enterprise.git`
+2. Extract the files and double-click `index.html` to open it in your preferred web browser.
+3. No internal dependencies (`npm`), build tools, or local servers are required to view the interactive screens.
 
 ---
 *Created by GreatGleb for the Flexiron ecosystem.*
