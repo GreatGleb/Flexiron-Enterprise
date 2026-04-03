@@ -78,7 +78,7 @@ body {
   grid-template-columns: var(--sidebar-w) 1fr;
   grid-template-rows: var(--header-h) 1fr;
   grid-template-areas: "sidebar header" "sidebar main";
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   transition: grid-template-columns 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -105,7 +105,7 @@ html.sidebar-no-animation .sidebar {
   grid-area: sidebar;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
   width: var(--sidebar-w);
   overflow: hidden;
   background: var(--glass-light);
@@ -890,6 +890,7 @@ html.sidebar-no-animation .sidebar {
     top: 0;
     left: calc(-1 * var(--sidebar-w));
     bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     width: var(--sidebar-w);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
