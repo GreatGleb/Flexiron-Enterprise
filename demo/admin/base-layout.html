@@ -10,14 +10,7 @@
     <link rel="stylesheet" href="../assets/css/erp-base.css">
     <style>[data-i18n] { opacity: 0; }</style>
     <link rel="icon" type="image/svg+xml" href="../assets/images/Flexiron_Icon_Blue.svg">
-    <script>
-        (function() {
-            const collapsed = localStorage.getItem('sidebar-collapsed') === 'true';
-            if (collapsed && window.innerWidth > 860) {
-                document.documentElement.classList.add('sidebar-no-animation');
-            }
-        })();
-    </script>
+    <script src="../assets/js/sidebar-collapsed.js"></script>
 </head>
 <body>
 <div class="bg-image"></div>

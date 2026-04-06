@@ -55,7 +55,7 @@ const translationEngine = {
             const value = this.getValueByPath(data, keyPath);
             
             if (value) {
-                if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'email' || el.type === 'tel' || el.type === 'password' || el.type === 'search')) {
+                if ((el.tagName === 'INPUT' && el.type !== 'submit' && el.type !== 'button') || el.tagName === 'TEXTAREA') {
                     el.placeholder = value;
                 } else if (el.tagName === 'META') {
                     el.setAttribute('content', value);
@@ -72,6 +72,17 @@ const translationEngine = {
             const value = this.getValueByPath(data, keyPath);
             if (value) {
                 el.title = value;
+                el.style.opacity = '1';
+            }
+        });
+
+        // 7. Handle custom tooltips for CSS (::after { content: attr(data-tooltip) })
+        document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
+            const keyPath = el.getAttribute('data-i18n-tooltip');
+            const value = this.getValueByPath(data, keyPath);
+            if (value) {
+                // Записываем перевод в атрибут, который "видит" CSS
+                el.setAttribute('data-tooltip', value);
                 el.style.opacity = '1';
             }
         });
