@@ -1,5 +1,6 @@
 const translationEngine = {
     currentLang: 'en',
+    onLanguageChange: [],
     
     init: function() {
         if (typeof translations === 'undefined') {
@@ -98,6 +99,11 @@ const translationEngine = {
         });
 
         document.documentElement.lang = lang;
+        
+        // Trigger callbacks for dynamic content re-render
+        this.onLanguageChange.forEach(callback => {
+            try { callback(lang); } catch(e) { console.error('Language change callback error:', e); }
+        });
     },
 
     getValueByPath: function(obj, path) {
