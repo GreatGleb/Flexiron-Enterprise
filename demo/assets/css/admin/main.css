@@ -1,43 +1,1141 @@
 /* --- MAIN CSS AGGREGATOR --- */
 /* This file imports all modular CSS components and utilities */
-
 /* Variables */
-@import '_variables.css';
-
+:root {
+  --primary: #1890ff;
+  --primary-dark: #005bb5;
+  --danger: #ff4d4f;
+  --sidebar-w: 280px;
+  --header-h: 64px;
+  --glass-light: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-glow: rgba(255, 255, 255, 0.22);
+  --text: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.65);
+  --text-nav: rgba(255, 255, 255, 0.9);
+}
 /* Utilities */
-@import 'utilities/_global.css';
-@import 'utilities/_flex.css';
-
+/* --- GLOBAL STYLES --- */
+[data-i18n] { opacity: 0; }
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; transition: 0.3s; }
+::-webkit-scrollbar-thumb:hover { background: rgba(24, 144, 255, 0.5); }
+/* Global form elements */
+textarea { resize: vertical; min-height: 80px; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+/* --- UI UTILITIES: FLEX LAYOUTS --- */
+/* Universal container for a group of buttons or elements */
+.flex-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* Container for aligning content to the end */
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+/* Utility for resetting extra margins on old components */
+.no-margin { margin: 0 !important; }
+.pos-static { position: static !important; }
 /* Components */
-@import 'components/_buttons.css';
-@import 'components/_glass-panel.css';
-@import 'components/_forms.css';
-@import 'components/_custom-select.css';
-@import 'components/_input-suffix.css';
-@import 'components/_tag-input.css';
-@import 'components/_datepicker.css';
-@import 'components/_rating.css';
-@import 'components/_dropzone.css';
-@import 'components/_status-pills.css';
-@import 'components/_action-buttons.css';
-@import 'components/_tables.css';
-@import 'components/_file-item.css';
-@import 'components/_note-item.css';
-@import 'components/_toast.css';
-
+/* --- UI COMPONENTS: BUTTONS --- */
+/* Base class for all interactive elements (links and buttons) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  text-decoration: none !important;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+/* Fix for icons inside buttons to always be centered */
+.btn svg,
+.btn .icon {
+  flex-shrink: 0;
+  display: block;
+}
+/* Button variants */
+.btn-save { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.3); pointer-events: none; transition: 0.4s; position: relative; }
+.btn-save.dirty { background: #1890FF; color: white; border-color: #1890FF; pointer-events: auto; box-shadow: 0 0 20px rgba(24, 144, 255, 0.5); }
+.btn-save.dirty:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(24, 144, 255, 0.7); }
+.btn-save.loading { color: transparent !important; pointer-events: none; }
+.btn-save.loading::after { content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; margin-left: -9px; margin-top: -9px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-secondary { background: #1890FF; border: 1px solid #1890FF; color: #fff; box-shadow: 0 4px 15px rgba(24, 144, 255, 0.2); }
+.btn-secondary:hover { background: #0077EE; border-color: #0077EE; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(24, 144, 255, 0.3); }
+.btn-secondary svg { stroke: #fff !important; }
+.btn-secondary:hover svg { stroke: #fff !important; }
+/* Primary Button */
+.btn-primary { background: var(--primary); color: #fff; border: none; cursor: pointer; transition: all 0.2s; }
+.btn-primary:hover { background: rgba(24, 144, 255, 0.85); }
+/* Small Button */
+.btn-sm { padding: 4px 10px; font-size: 11px; border-radius: 4px; }
+/* Text Button (link-styled) */
+.btn-text,
+.text-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+.btn-text:hover,
+.text-btn:hover { background: rgba(24, 144, 255, 0.1); }
+.btn-text svg,
+.text-btn svg { flex-shrink: 0; }
+/* Generic Loading State */
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+.btn.loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-left: 8px;
+}
+/* --- UI COMPONENTS: GLASS PANEL --- */
+.glass-panel { margin-bottom: 24px; position: relative; transition: z-index 0s; }
+.glass-panel.loading .panel-body { display: none; }
+.glass-panel.loading .panel-skeleton { display: block; }
+.glass-panel:has(.custom-select-list.open) { z-index: 100 !important; }
+.panel-body { display: block; }
+.panel-skeleton { display: none; padding: 20px; }
+.panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.panel-title { font-size: 14px; font-weight: 700; color: #fff; }
+.panel-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(24, 144, 255, 0.2); color: #1890FF; }
+/* Skeleton loading animation */
+.skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; border-radius: 8px; height: 20px; margin-bottom: 10px; }
+@keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+/* --- UI COMPONENTS: FORMS --- */
+.input-group { margin-bottom: 20px; }
+.field-label { display: block; font-size: 11px; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin-bottom: 6px; letter-spacing: 0.5px; }
+.glass-input { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 14px; border-radius: 8px; color: white; transition: 0.3s; font-size: 14px; }
+.glass-input:focus { border-color: #1890FF; outline: none; box-shadow: 0 0 10px rgba(24, 144, 255, 0.2); }
+textarea.glass-input { resize: vertical; min-height: 50px; }
+/* Info hint tooltip */
+.info-hint { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: rgba(24, 144, 255, 0.2); border: 1px solid rgba(24, 144, 255, 0.4); border-radius: 50%; color: #1890FF; cursor: help; margin-left: 8px; vertical-align: middle; position: relative; transition: 0.3s; }
+.info-hint:hover { background: #1890FF; color: #fff; transform: scale(1.1); box-shadow: 0 0 10px rgba(24, 144, 255, 0.5); }
+.info-hint::after { content: attr(data-tooltip); position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 220px; padding: 12px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 11px; text-transform: none; line-height: 1.4; pointer-events: none; opacity: 0; transition: 0.3s; z-index: 1002; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+.info-hint:hover::after { opacity: 1; transform: translateX(-50%) translateY(-5px); }
+/* --- UI COMPONENTS: CUSTOM SELECT --- */
+.custom-select-wrap { position: relative; width: 100%; }
+.custom-select-trigger { cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.custom-select-list { position: absolute; top: calc(100% + 8px); left: 0; width: 100%; background: rgba(40, 42, 48, 0.95); backdrop-filter: blur(25px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 10px; padding: 8px; z-index: 1001; box-shadow: 0 25px 60px rgba(0,0,0,0.6); display: none; transform: translateY(-10px); transition: 0.2s; }
+.custom-select-list.open { display: block; transform: translateY(0); }
+.custom-select-option { padding: 10px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; transition: 0.2s; color: rgba(255, 255, 255, 0.7); }
+.custom-select-option:hover { background: rgba(24, 144, 255, 0.2); color: #fff; border: 1px solid rgba(24, 144, 255, 0.4); box-shadow: 0 0 15px rgba(24, 144, 255, 0.2); padding: 9px 11px; }
+.select-arrow { opacity: 0.5; transition: 0.3s; }
+.open .select-arrow { transform: rotate(180deg); }
+/* --- UI COMPONENTS: INPUT WITH SUFFIX --- */
+.input-with-suffix { position: relative; display: flex; align-items: center; width: 100%; height: 41px; }
+.input-with-suffix .glass-input { padding-right: 60px; height: 100%; }
+.input-suffix { position: absolute; right: 4px; height: calc(100% - 8px); top: 4px; background: rgba(0, 0, 0, 0.25); border-left: 1px solid rgba(255, 255, 255, 0.1); color: #1890FF; padding: 0 10px; border-radius: 6px; display: flex; align-items: center; font-size: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; backdrop-filter: blur(5px); }
+.input-suffix:hover { background: rgba(24, 144, 255, 0.3); color: #fff; }
+.input-with-suffix .custom-select-list { top: calc(100% + 5px); right: 0; left: auto; width: 90px; background: rgba(50, 54, 62, 0.98); border-color: rgba(255, 255, 255, 0.2); }
+/* --- UI COMPONENTS: TAG INPUT --- */
+.tag-container { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; background: rgba(0, 0, 0, 0.2); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; min-height: 50px; align-items: center; }
+.tag-container:focus-within { border-color: #1890FF; box-shadow: 0 0 10px rgba(24, 144, 255, 0.1); }
+.tag { background: rgba(24, 144, 255, 0.15); border: 1px solid rgba(24, 144, 255, 0.3); padding: 6px 12px; border-radius: 20px; font-size: 12px; color: #fff; display: flex; align-items: center; gap: 8px; white-space: nowrap; transition: 0.2s; }
+.tag:hover { background: rgba(24, 144, 255, 0.25); border-color: #1890FF; }
+.tag-remove { cursor: pointer; display: inline-flex; align-items: center; vertical-align: middle; transition: 0.2s; margin: 0; padding: 0; }
+.tag .tag-remove { color: rgba(255,255,255,0.5); }
+.tag .tag-remove:hover { color: #fff; }
+.tag-input { background: transparent; border: none; color: white; outline: none; min-width: 150px; font-size: 13px; opacity: 0.5; transition: 0.3s; }
+.tag-input:focus { opacity: 1; }
+.tag-dropdown { position: absolute; top: calc(100% + 5px); left: 0; width: 100%; background: rgba(40, 42, 48, 0.98); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px; z-index: 1001; box-shadow: 0 15px 30px rgba(0,0,0,0.5); display: none; max-height: 200px; overflow-y: auto; }
+.tag-dropdown.open { display: block; }
+.tag-drop-item { padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); transition: 0.2s; }
+.tag-drop-item:hover { background: rgba(24, 144, 255, 0.2); color: #fff; }
+/* --- UI COMPONENTS: DATEPICKER --- */
+.custom-datepicker-wrap { position: relative; width: 100%; }
+.datepicker-trigger { cursor: pointer; display: flex; align-items: center; justify-content: space-between; position: relative; }
+.datepicker-popup { position: absolute; top: calc(100% + 8px); left: 0; width: 280px; background: rgba(30, 34, 40, 0.98); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); display: none; z-index: 9999; padding: 15px; }
+.datepicker-popup.open { display: block; animation: select-open 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.calendar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.calendar-title { font-size: 14px; font-weight: 700; color: #fff; }
+.calendar-nav { display: flex; gap: 8px; }
+.nav-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); width: 28px; height: 28px; border-radius: 6px; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
+.nav-btn:hover { background: rgba(24, 144, 255, 0.2); border-color: #1890FF; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+.weekday { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-bottom: 8px; }
+.calendar-day { height: 32px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-radius: 6px; cursor: pointer; color: rgba(255,255,255,0.7); transition: 0.2s; border: 1px solid transparent; }
+.calendar-day:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.calendar-day.today { color: #1890FF; font-weight: 700; border-color: rgba(24, 144, 255, 0.3); }
+.calendar-day.selected { background: #1890FF; color: #fff; font-weight: 700; box-shadow: 0 0 15px rgba(24, 144, 255, 0.5); }
+.calendar-day.other-month { opacity: 0.2; }
+/* --- UI COMPONENTS: RATING STARS --- */
+.rating-stars { display: flex; gap: 4px; align-items: center; }
+.star-svg { width: 14px; height: 14px; fill: rgba(255, 215, 0, 0.2); stroke: rgba(255, 215, 0, 0.4); stroke-width: 2px; transition: 0.3s; }
+.star-svg.active { fill: #FFD700; stroke: #FFD700; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4)); }
+.custom-select-option:hover .star-svg { transform: scale(1.1); }
+/* --- UI COMPONENTS: DROPZONE --- */
+.dropzone { border: 2px dashed rgba(255,255,255,0.1); padding: 24px; text-align: center; cursor: pointer; border-radius: 14px; transition: 0.3s; background: rgba(0,0,0,0.1); }
+.dropzone:hover { border-color: #1890FF; background: rgba(24, 144, 255, 0.05); }
+.dropzone:hover svg { color: #ffffff!important; }
+.dropzone-text { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; text-align: center; margin-top: 8px; }
+.dropzone:hover .dropzone-text { color: #fff; }
+/* --- UI COMPONENTS: STATUS PILLS --- */
+.status-pill { padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+.pill-success { background: rgba(82, 196, 26, 0.2); border: 1px solid rgba(82, 196, 26, 0.3); color: #52c41a; }
+.pill-warning { background: rgba(250, 173, 20, 0.2); border: 1px solid rgba(250, 173, 20, 0.3); color: #faad14; }
+.pill-danger { background: rgba(255, 77, 79, 0.2); border: 1px solid rgba(255, 77, 79, 0.3); color: #ff4d4f; }
+.pill-info { background: rgba(24, 144, 255, 0.2); border: 1px solid rgba(24, 144, 255, 0.3); color: #1890FF; }
+.pill-secondary { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: rgba(255, 255, 255, 0.6); }
+.pill-purple { background: rgba(114, 46, 209, 0.2); border: 1px solid rgba(114, 46, 209, 0.3); color: #b37feb; }
+.pill-suspended { background: rgba(255, 122, 69, 0.2); border: 1px solid rgba(255, 122, 69, 0.3); color: #ff7a45; }
+.pill-mint { background: rgba(181, 245, 236, 0.1); border: 1px solid rgba(181, 245, 236, 0.3); color: #5cdbd3; }
+/* BCC Request Status Variants (no border, capitalize) */
+.status-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; text-transform: capitalize; }
+.status-sent { background: rgba(24, 144, 255, 0.15); color: var(--primary); }
+.status-pending { background: rgba(24, 144, 255, 0.15); color: var(--primary); }
+.status-responded { background: rgba(82, 196, 26, 0.15); color: #52c41a; }
+.status-no_response { background: rgba(255, 255, 255, 0.08); color: var(--text-dim); }
+.status-partial { background: rgba(250, 173, 20, 0.15); color: #faad14; }
+.status-completed { background: rgba(255, 255, 255, 0.08); color: var(--text-dim); }
+.status-all_responded { background: rgba(82, 196, 26, 0.15); color: #52c41a; }
+/* --- UI COMPONENTS: ACTION BUTTONS --- */
+.action-btn-wrap { cursor: pointer; transition: 0.2s; opacity: 0.5; color: rgb(255, 255, 255); }
+.action-btn-wrap:hover { opacity: 1; }
+.save-icon { display: none; }
+.editing .edit-icon { display: none; }
+.editing .save-icon { display: inline-block; }
+/* --- UI COMPONENTS: TABLES --- */
+.table-responsive { overflow-x: auto; width: 100%; }
+.history-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.history-table th { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255, 255, 255, 0.35); padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.history-table td { padding: 0.75rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: 0.2s; }
+.history-table tr:hover td { background: rgba(255, 255, 255, 0.04); color: #fff; }
+.history-table tr:last-child td { border-bottom: none; }
+.history-table th:last-child, .history-table td:last-child { text-align: right; }
+.history-table th:nth-child(2), .history-table td:nth-child(2) { text-align: center; }
+/* --- UI COMPONENTS: FILE ITEM --- */
+.file-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(255,255,255,0.04); border-radius: 10px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.08); transition: 0.2s; }
+.file-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(24, 144, 255, 0.3); transform: translateX(2px); }
+.file-info { display: flex; align-items: center; gap: 10px; flex: 1; }
+.file-name { font-size: 13px; color: #fff; font-weight: 500; }
+.file-actions { display: flex; align-items: center; gap: 12px; }
+.file-action-btn { color: rgba(255, 255, 255, 0.4); display: flex; align-items: center; justify-content: center; transition: 0.2s; cursor: pointer; text-decoration: none; }
+.file-action-btn:hover { color: #1890FF; transform: scale(1.1); }
+/* --- UI COMPONENTS: NOTE ITEM --- */
+.note-item { padding: 12px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; position: relative; transition: 0.3s; }
+.note-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
+.note-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.note-date { font-family: 'JetBrains Mono'; font-size: 10px; color: #1890FF; font-weight: 700; }
+.note-text { font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+.btn-add-note { width: 100%; padding: 8px; background: rgba(24, 144, 255, 0.1); border: 1px solid rgba(24, 144, 255, 0.2); border-radius: 8px; color: #1890FF; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+.btn-add-note:hover { background: #1890FF; color: #fff; }
+/* --- UI COMPONENTS: TOAST NOTIFICATION --- */
+.toast-container { position: fixed; bottom: 30px; right: 30px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: rgba(30, 34, 40, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.15); padding: 16px 24px; border-radius: 12px; color: #fff; font-size: 14px; display: flex; align-items: center; gap: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transform: translateX(120%); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.toast.show { transform: translateX(0); }
+.toast-icon { width: 22px; height: 22px; color: #52c41a; }
+.toast-error .toast-icon { color: var(--danger); }
+.toast-error { border-color: rgba(255, 77, 79, 0.3); }
 /* Entity Card Components */
-@import 'components/_entity-card-layout.css';
-@import 'components/_audit-log.css';
-@import 'components/_inline-edit.css';
-@import 'components/_contact-card.css';
-@import 'components/_validation.css';
-
+/* --- ENTITY CARD LAYOUT --- */
+/* Reusable 3-column grid for entity cards (suppliers, customers, partners, etc.) */
+/* Entity Card Grid */
+.entity-card-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 24px; align-items: start; margin-bottom: 24px; }
+.entity-col-left { align-self: start; }
+.entity-col-center { align-self: start; }
+.entity-col-right { align-self: start; }
+@media (max-width: 1200px) { .entity-card-grid { grid-template-columns: 1fr 1fr; } .entity-col-right { grid-column: span 2; } }
+@media (max-width: 992px) { .entity-card-grid { display: flex; flex-direction: column; } .entity-col-center { order: -1; } }
+/* Entity Action Bar */
+.entity-action-bar { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; position: sticky; top: 0; z-index: 10; }
+@media (max-width: 600px) { .entity-action-bar { justify-content: flex-start; } .entity-action-bar .btn { flex: 1 0 auto; justify-content: center; } }
+/* --- AUDIT LOG --- */
+/* Reusable audit history table for entity cards */
+/* Audit Log Table */
+.audit-panel-wide { min-width: 600px; width: 100%; }
+.audit-log-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.audit-log-table th { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255, 255, 255, 0.35); padding: 0.75rem; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.audit-log-table td { padding: 0.75rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: 0.2s; }
+.audit-log-table tr:hover td { background: rgba(255, 255, 255, 0.04); color: #fff; }
+/* Audit User Cell */
+.audit-log-user { display: flex; align-items: center; gap: 8px; }
+.audit-log-avatar { width: 24px; height: 24px; background: rgba(24, 144, 255, 0.1); border: 1px solid rgba(24, 144, 255, 0.2); border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center; color: #1890FF; font-weight: bold; }
+/* Audit Timestamp */
+.audit-log-ts { font-family: 'JetBrains Mono', monospace; color: rgba(255, 255, 255, 0.45); font-size: 11px; }
+/* Audit Diff Display */
+.audit-diff-old { text-decoration: line-through; color: #ff4d4f; opacity: 0.7; margin-right: 4px; }
+.audit-diff-new { color: #52c41a; font-weight: 500; }
+/* --- INLINE EDIT --- */
+/* Reusable inline editing styles for entity card tables */
+/* Entity Inline Editing State */
+.entity-editing [contenteditable="false"] { background: rgba(24, 144, 255, 0.05); outline: 1px solid rgba(24, 144, 255, 0.2); border-radius: 4px; cursor: text; }
+/* Small Input for Tables */
+.entity-input-sm { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; border-radius: 4px; padding: 2px 4px; outline: none; }
+.entity-input-sm option { background: #1a1f2b; color: #fff; }
+/* Small Select for Tables */
+.entity-select-sm .custom-select-trigger { padding: 2px 8px; font-size: 11px; height: 24px; background: rgba(40, 45, 55, 0.4); justify-content: center; }
+.entity-select-sm .curr-val { width: 100%; text-align: center; }
+.entity-select-sm .custom-select-list { top: calc(100% + 4px); left: 50%; transform: translateX(-50%); font-size: 11px; min-width: 160px; text-align: center; z-index: 1005; }
+.entity-select-sm .custom-select-option { padding: 6px 12px; }
+/* --- CONTACT CARD --- */
+/* Reusable contact card wrapper for entity cards */
+.entity-contact-card { background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+/* --- VALIDATION --- */
+/* Reusable field validation styles */
+.field-mandatory-alert { border-color: #ff4d4f !important; box-shadow: 0 0 10px rgba(255, 77, 79, 0.2); }
 /* BCC Request Components */
-@import 'components/_modal.css';
-@import 'components/_tree-select.css';
-@import 'components/_multiselect.css';
-@import 'components/_checkbox-list.css';
-@import 'components/_checklist.css';
-@import 'components/_email-template.css';
-@import 'components/_price-input.css';
-@import 'components/_action-icons.css';
+/* --- UI COMPONENTS: MODAL --- */
+/* Reusable modal overlay with header, body, footer */
+/* Modal Overlay (backdrop) */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+/* Modal Container */
+.modal {
+    background: rgba(30, 34, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 480px;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+.modal-overlay.active .modal {
+    transform: scale(1) translateY(0);
+}
+/* Modal Size Variants */
+.modal-small { max-width: 400px; }
+.modal-medium { max-width: 560px; }
+.modal-large { max-width: 720px; }
+/* Modal Header */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+/* Modal Close Button */
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.modal-close-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.1);
+}
+/* Modal Body */
+.modal-body {
+    padding: 24px;
+}
+/* Modal Form (inside body) */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+/* Modal Footer */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.modal-footer .btn {
+    min-width: 100px;
+}
+/* --- UI COMPONENTS: TREE SELECT --- */
+/* Reusable tree component with expandable nodes and checkboxes */
+/* Tree Container */
+.tree-select {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--glass-bg);
+}
+/* Tree Node */
+.tree-node {
+    border-bottom: 1px solid var(--border-color);
+}
+.tree-node:last-child {
+    border-bottom: none;
+}
+/* Node Header (clickable row) */
+.tree-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.02);
+}
+/* Expand Button */
+.tree-expand-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: transform 0.2s, color 0.2s;
+}
+.tree-expand-btn:hover {
+    color: var(--text);
+}
+.tree-node.expanded .tree-expand-btn {
+    transform: rotate(90deg);
+}
+/* Node Checkbox */
+.tree-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    flex: 1;
+}
+.tree-checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+}
+/* Node Name */
+.tree-name {
+    font-weight: 500;
+    color: var(--text);
+}
+/* Node Count Badge */
+.tree-count {
+    font-size: 12px;
+    color: var(--text-dim);
+}
+/* Children Container */
+.tree-children {
+    display: none;
+    padding: 8px 12px 8px 44px;
+    background: rgba(0, 0, 0, 0.02);
+}
+.tree-node.expanded .tree-children {
+    display: block;
+}
+/* Child Item (leaf) */
+.tree-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+.tree-child input {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--primary);
+}
+.tree-child-name {
+    font-size: 13px;
+    color: var(--text-dim);
+}
+.tree-child input:checked + .tree-child-name {
+    color: var(--text);
+}
+/* Category Tree (alias classes for BCC request) */
+.category-tree {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--glass-bg);
+}
+.category-node {
+    border-bottom: 1px solid var(--border-color);
+}
+.category-node:last-child {
+    border-bottom: none;
+}
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.02);
+}
+.expand-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: transform 0.2s, color 0.2s;
+}
+.expand-btn:hover {
+    color: var(--text);
+}
+.category-node.expanded .expand-btn {
+    transform: rotate(90deg);
+}
+.category-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    flex: 1;
+}
+.category-checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+}
+.category-name {
+    font-weight: 500;
+    color: var(--text);
+}
+.category-count {
+    font-size: 12px;
+    color: var(--text-dim);
+}
+.category-children {
+    display: none;
+    padding: 8px 12px 8px 44px;
+    background: rgba(0, 0, 0, 0.02);
+}
+.category-node.expanded .category-children {
+    display: block;
+}
+.category-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+.category-child input {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--primary);
+}
+.category-child-name {
+    font-size: 13px;
+    color: var(--text-dim);
+}
+.category-child input:checked + .category-child-name {
+    color: var(--text);
+}
+/* --- UI COMPONENTS: MULTISELECT --- */
+/* Dropdown with checkbox options for multi-selection */
+/* Multiselect Container */
+.multiselect,
+.multi-select-wrap {
+    position: relative;
+}
+/* Trigger (shows selected items as tags) */
+.multiselect-trigger,
+.multi-select-wrap .custom-select-trigger {
+    min-height: 42px;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 36px 8px 12px;
+}
+/* Tags Container */
+.multiselect-tags,
+.multi-select-tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+.multiselect-tags:empty::before,
+.multi-select-tags:empty::before {
+    content: attr(data-placeholder);
+    color: var(--text-dim);
+}
+/* Placeholder (hidden when tags exist) */
+.multiselect-placeholder,
+.multi-select-placeholder {
+    color: var(--text-dim);
+    font-size: 14px;
+}
+.multiselect-tags:has(.tag) .multiselect-placeholder,
+.multi-select-tags:has(.tag) .multi-select-placeholder {
+    display: none;
+}
+/* Dropdown List */
+.multiselect-list,
+.multi-select-list {
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(30, 34, 40, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin-top: 4px;
+}
+.multiselect-list.open,
+.multi-select-list.open {
+    display: block;
+}
+/* Option Group */
+.multiselect-group,
+.multi-select-group {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.multiselect-group:last-child,
+.multi-select-group:last-child {
+    border-bottom: none;
+}
+.multiselect-group-label,
+.multi-select-group-label {
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    background: rgba(0, 0, 0, 0.03);
+}
+/* Option Item */
+.multiselect-option,
+.multi-select-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    margin: 2px 4px;
+}
+.multiselect-option:hover,
+.multi-select-option:hover {
+    background: rgba(24, 144, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(24, 144, 255, 0.4);
+    box-shadow: 0 0 15px rgba(24, 144, 255, 0.2);
+    padding: 9px 13px;
+    margin: 1px 3px;
+}
+.multiselect-option input[type="checkbox"],
+.multi-select-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.multiselect-option span,
+.multi-select-option span {
+    flex: 1;
+    color: inherit;
+}
+/* Option Count Badge */
+.multiselect-count,
+.option-count {
+    background: rgba(24, 144, 255, 0.15);
+    color: var(--primary);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+/* Custom Checkbox Style */
+.multiselect-option input[type="checkbox"],
+.multi-select-option input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s;
+}
+.multiselect-option input[type="checkbox"]:checked,
+.multi-select-option input[type="checkbox"]:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+.multiselect-option input[type="checkbox"]:checked::after,
+.multi-select-option input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.multiselect-option input[type="checkbox"]:hover,
+.multi-select-option input[type="checkbox"]:hover {
+    border-color: var(--primary);
+}
+/* --- UI COMPONENTS: CHECKBOX LIST --- */
+/* Scrollable list with checkboxes, search and select controls */
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.checkbox-list-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.checkbox-list-controls .text-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+.checkbox-list-controls .text-btn:hover {
+    background: rgba(24, 144, 255, 0.1);
+}
+.selected-count {
+    color: var(--text-dim);
+    font-size: 12px;
+    margin-left: auto;
+}
+.selected-count .count {
+    color: var(--primary);
+    font-weight: 600;
+}
+.checkbox-list-search {
+    position: relative;
+}
+.checkbox-list-search .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+}
+.checkbox-list-search .search-input {
+    padding-left: 36px;
+    font-size: 13px;
+}
+.checkbox-list-items {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.checkbox-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.checkbox-label {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text);
+}
+.checkbox-email {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+}
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-dim);
+    font-size: 13px;
+}
+/* --- UI COMPONENTS: CHECKLIST --- */
+/* Searchable checkbox list with select all/none controls */
+/* Checklist Container */
+.checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+/* Controls Bar */
+.checklist-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+/* Selected Count */
+.checklist-count {
+    color: var(--text-dim);
+    font-size: 12px;
+    margin-left: auto;
+}
+.checklist-count .count {
+    color: var(--primary);
+    font-weight: 600;
+}
+/* Search Input */
+.checklist-search {
+    position: relative;
+}
+.checklist-search .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+}
+.checklist-search .search-input {
+    padding-left: 36px;
+    font-size: 13px;
+}
+/* Items List */
+.checklist-items {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+/* Checklist Item */
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.checklist-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.checklist-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+/* Item Label */
+.checklist-label {
+    flex: 1;
+    font-size: 13px;
+    color: var(--text);
+}
+/* Item Secondary Text (e.g., email) */
+.checklist-secondary {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+}
+/* Empty State */
+.checklist-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-dim);
+    font-size: 13px;
+}
+/* --- UI COMPONENTS: EMAIL TEMPLATE --- */
+/* Email composition form with subject, body, variables, attachments */
+/* Email Template Container */
+.email-template {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+/* Subject/Body Sections */
+.email-template-subject,
+.email-template-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+/* Subject Input */
+.email-subject-input {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.email-subject-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+/* Body Textarea */
+.email-body-input {
+    font-size: 13px;
+    resize: vertical;
+    min-height: 150px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+.email-body-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+/* Template Variables */
+.email-variables {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+}
+.email-variables-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+/* Variable Hint (clickable tag) */
+.email-variable-hint {
+    background: rgba(24, 144, 255, 0.15);
+    color: var(--primary);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.email-variable-hint:hover {
+    background: rgba(24, 144, 255, 0.25);
+}
+/* Attachments Section */
+.email-attachments {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+/* Attachment List */
+.email-attachment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+/* Attachment Item */
+.email-attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 13px;
+}
+.email-attachment-item svg:first-child {
+    color: var(--primary);
+}
+.email-attachment-item span {
+    flex: 1;
+    color: var(--text);
+}
+.email-attachment-item .action-btn-wrap {
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: color 0.2s;
+}
+.email-attachment-item .action-btn-wrap:hover {
+    color: var(--danger);
+}
+/* Aliases for JS-generated classes */
+.attachment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.attachment-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 13px;
+}
+.attachment-item svg:first-child {
+    color: var(--primary);
+}
+.attachment-item span {
+    flex: 1;
+    color: var(--text);
+}
+.attachment-item .action-btn-wrap {
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: color 0.2s;
+}
+.attachment-item .action-btn-wrap:hover {
+    color: var(--danger);
+}
+/* --- UI COMPONENTS: PRICE INPUT --- */
+/* Price input field with unit selector */
+/* Price Input Container */
+.price-input {
+    display: flex;
+    gap: 8px;
+}
+/* Price Value Input */
+.price-input-value {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+}
+/* Unit Select */
+.price-input-unit {
+    width: 80px;
+}
+.price-input-unit .unit-select {
+    width: 100%;
+    text-align: center;
+}
+/* Small Variant (for modals/tables) */
+.price-input-sm .price-input-value {
+    font-size: 13px;
+    padding: 8px 12px;
+}
+.price-input-sm .price-input-unit {
+    width: 70px;
+}
+/* --- UI COMPONENTS: ACTION ICONS --- */
+/* Icon buttons for table actions (edit, delete, success, danger) */
+/* Action Icon Button Base */
+.action-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+.action-icon-btn:hover {
+    transform: translateY(-1px);
+}
+/* Success Variant (green hover) */
+.action-icon-btn.action-success:hover {
+    background: rgba(82, 196, 26, 0.15);
+    border-color: rgba(82, 196, 26, 0.4);
+    color: #52c41a;
+    box-shadow: 0 0 12px rgba(82, 196, 26, 0.2);
+}
+/* Danger Variant (red hover) */
+.action-icon-btn.action-danger:hover {
+    background: rgba(255, 77, 79, 0.15);
+    border-color: rgba(255, 77, 79, 0.4);
+    color: #ff4d4f;
+    box-shadow: 0 0 12px rgba(255, 77, 79, 0.2);
+}
+/* Edit Variant (blue hover) */
+.action-icon-btn.action-edit:hover {
+    background: rgba(24, 144, 255, 0.15);
+    border-color: rgba(24, 144, 255, 0.4);
+    color: var(--primary);
+    box-shadow: 0 0 12px rgba(24, 144, 255, 0.2);
+}
+/* Legacy btn-icon support (deprecated, use action-icon-btn) */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-icon:hover {
+    background: rgba(24, 144, 255, 0.15);
+    border-color: rgba(24, 144, 255, 0.3);
+    color: var(--primary);
+}
+.btn-icon.success {
+    color: #52c41a;
+}
+.btn-icon.success:hover {
+    background: rgba(82, 196, 26, 0.15);
+    border-color: rgba(82, 196, 26, 0.3);
+    color: #52c41a;
+}
