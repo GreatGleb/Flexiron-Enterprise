@@ -1107,7 +1107,7 @@ InBox LT Team`;
     renderHistoryTable();
 
     setTimeout(() => {
-        document.querySelectorAll('[data-i18n]').forEach(el => el.style.opacity = '1');
+        document.querySelectorAll('[data-i18n]').forEach(el => el.classList.add('i18n-visible'));
     }, 100);
 
     // ============================================

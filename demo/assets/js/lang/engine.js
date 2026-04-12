@@ -30,8 +30,7 @@ const translationEngine = {
         // We use opacity 1 only after the first pass is complete
         setTimeout(() => {
             document.querySelectorAll('[data-i18n]').forEach(el => {
-                el.style.opacity = '1';
-                el.style.transition = 'opacity 0.2s ease-in-out';
+                el.classList.add('i18n-visible');
             });
         }, 30);
     },
@@ -63,7 +62,7 @@ const translationEngine = {
                 } else {
                     el.innerHTML = value;
                 }
-                el.style.opacity = '1';
+                el.classList.add('i18n-visible');
             }
         });
 
@@ -82,7 +81,7 @@ const translationEngine = {
                     titleEl.textContent = value;
                 } else {
                     el.title = value;
-                    el.style.opacity = '1';
+                    el.classList.add('i18n-visible');
                 }
             }
         });
@@ -94,7 +93,7 @@ const translationEngine = {
             if (value) {
                 // Записываем перевод в атрибут, который "видит" CSS
                 el.setAttribute('data-tooltip', value);
-                el.style.opacity = '1';
+                el.classList.add('i18n-visible');
             }
         });
 
@@ -126,6 +125,17 @@ const translationEngine = {
 
         const scope = root || document;
 
+        // Translate [data-i18n] elements (inner content)
+        scope.querySelectorAll('[data-i18n]').forEach(el => {
+            const keyPath = el.getAttribute('data-i18n');
+            const value = this.getValueByPath(data, keyPath);
+            if (value) {
+                el.innerHTML = value;
+                el.classList.add('i18n-visible');
+            }
+        });
+
+        // Translate [data-i18n-title] elements (title attribute)
         scope.querySelectorAll('[data-i18n-title]').forEach(el => {
             const keyPath = el.getAttribute('data-i18n-title');
             const value = this.getValueByPath(data, keyPath);
@@ -140,7 +150,7 @@ const translationEngine = {
                     titleEl.textContent = value;
                 } else {
                     el.title = value;
-                    el.style.opacity = '1';
+                    el.classList.add('i18n-visible');
                 }
             }
         });

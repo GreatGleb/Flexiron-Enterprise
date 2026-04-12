@@ -594,5 +594,5 @@ window.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    setTimeout(() => { document.querySelectorAll('[data-i18n]').forEach(el => el.style.opacity = '1'); }, 100);
+    setTimeout(() => { document.querySelectorAll('[data-i18n]').forEach(el => el.classList.add('i18n-visible')); }, 100);
 });

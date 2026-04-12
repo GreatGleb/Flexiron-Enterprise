@@ -12,7 +12,7 @@
         {{#if hasFooter}}
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-action="cancel" data-i18n="{{cancelLabelKey}}">{{cancelLabel}}</button>
-            <button type="button" class="btn btn-primary" data-action="save" data-i18n="{{saveLabelKey}}">{{saveLabel}}</button>
+            <button type="button" class="btn btn-{{#if danger}}danger{{else}}primary{{/if}}" data-action="save" data-i18n="{{saveLabelKey}}">{{saveLabel}}</button>
         </div>
         {{/if}}
     </div>

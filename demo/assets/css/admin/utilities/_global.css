@@ -1,5 +1,6 @@
 /* --- GLOBAL STYLES --- */
 [data-i18n] { opacity: 0; }
+.i18n-visible { opacity: 1 !important; transition: opacity 0.2s ease-in-out; }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
