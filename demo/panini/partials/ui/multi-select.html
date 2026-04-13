@@ -2,11 +2,10 @@
     <div class="glass-input custom-select-trigger">
         <div class="multi-select-tags" data-placeholder="{{placeholder}}">
             <span class="multi-select-placeholder" data-i18n="{{placeholderKey}}">{{placeholder}}</span>
-            {{> @partial-block }}
         </div>
         {{> icon name="chevron-down" width="12" height="12" class="select-arrow"}}
     </div>
     <div class="custom-select-list multi-select-list">
-        {{!-- Options populated by JS with grouped structure --}}
+        {{> @partial-block }}
     </div>
 </div>

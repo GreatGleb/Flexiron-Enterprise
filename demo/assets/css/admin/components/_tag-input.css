@@ -12,3 +12,64 @@
 .tag-dropdown.open { display: block; }
 .tag-drop-item { padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; color: rgba(255,255,255,0.7); transition: 0.2s; }
 .tag-drop-item:hover { background: rgba(24, 144, 255, 0.2); color: #fff; }
+
+/* Tag Input - Tablet */
+@media (max-width: 992px) {
+    .tag-container { gap: 8px; padding: 10px; min-height: 45px; }
+    .tag { padding: 5px 10px; font-size: 11px; gap: 6px; }
+}
+
+/* Tag Input - Mobile */
+@media (max-width: 600px) {
+    .tag-container {
+        gap: 6px;
+        padding: 8px;
+        min-height: 40px;
+        border-radius: 8px;
+    }
+    .tag {
+        padding: 4px 8px;
+        font-size: 10px;
+        gap: 4px;
+        border-radius: 12px;
+    }
+    .tag-input {
+        min-width: 100px;
+        font-size: 12px;
+    }
+    .tag-dropdown {
+        border-radius: 8px;
+        padding: 6px;
+        max-height: 150px;
+    }
+    .tag-drop-item {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Tag Input - Small Mobile */
+@media (max-width: 400px) {
+    .tag-container {
+        gap: 4px;
+        padding: 6px;
+        min-height: 36px;
+    }
+    .tag {
+        padding: 3px 6px;
+        font-size: 9px;
+        gap: 3px;
+    }
+    .tag svg {
+        width: 10px;
+        height: 10px;
+    }
+    .tag-input {
+        min-width: 80px;
+        font-size: 11px;
+    }
+    .tag-drop-item {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+}

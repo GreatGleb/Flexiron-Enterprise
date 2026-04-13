@@ -80,3 +80,62 @@
     animation: spin 0.8s linear infinite;
     margin-left: 8px;
 }
+
+/* Buttons - Tablet */
+@media (max-width: 992px) {
+    .btn {
+        padding: 7px 14px;
+        font-size: 13px;
+        gap: 6px;
+    }
+    .btn-sm { padding: 3px 8px; font-size: 10px; }
+}
+
+/* Buttons - Mobile */
+@media (max-width: 600px) {
+    .btn {
+        padding: 8px 12px;
+        font-size: 13px;
+        gap: 6px;
+        border-radius: 6px;
+    }
+    .btn-sm {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+    .btn-text,
+    .text-btn {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+    .btn-save.dirty {
+        box-shadow: 0 0 15px rgba(24, 144, 255, 0.4);
+    }
+}
+
+/* Buttons - Small Mobile */
+@media (max-width: 400px) {
+    .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+        gap: 4px;
+        border-radius: 5px;
+    }
+    .btn-sm {
+        padding: 2px 6px;
+        font-size: 9px;
+    }
+    .btn-text,
+    .text-btn {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+    .btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    .btn-sm svg {
+        width: 12px;
+        height: 12px;
+    }
+}

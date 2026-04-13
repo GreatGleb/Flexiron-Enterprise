@@ -154,6 +154,16 @@ const translationEngine = {
                 }
             }
         });
+
+        // Translate [data-i18n-tooltip] elements (data-tooltip attribute for JS tooltips)
+        scope.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
+            const keyPath = el.getAttribute('data-i18n-tooltip');
+            const value = this.getValueByPath(data, keyPath);
+            if (value) {
+                el.setAttribute('data-tooltip', value);
+                el.classList.add('i18n-visible');
+            }
+        });
     }
 };
 

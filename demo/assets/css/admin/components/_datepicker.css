@@ -15,3 +15,63 @@
 .calendar-day.today { color: #1890FF; font-weight: 700; border-color: rgba(24, 144, 255, 0.3); }
 .calendar-day.selected { background: #1890FF; color: #fff; font-weight: 700; box-shadow: 0 0 15px rgba(24, 144, 255, 0.5); }
 .calendar-day.other-month { opacity: 0.2; }
+
+/* Datepicker - Tablet */
+@media (max-width: 992px) {
+    .datepicker-popup {
+        width: 260px;
+        padding: 12px;
+        border-radius: 12px;
+    }
+    .calendar-header { margin-bottom: 10px; }
+    .calendar-title { font-size: 13px; }
+}
+
+/* Datepicker - Mobile */
+@media (max-width: 600px) {
+    .datepicker-popup {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 16px 16px 0 0;
+        padding: 14px;
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+    }
+    .calendar-header { margin-bottom: 10px; }
+    .calendar-title { font-size: 13px; }
+    .nav-btn {
+        width: 32px;
+        height: 32px;
+    }
+    .calendar-grid { gap: 3px; }
+    .weekday { font-size: 9px; margin-bottom: 6px; }
+    .calendar-day {
+        height: 36px;
+        font-size: 11px;
+        border-radius: 5px;
+    }
+}
+
+/* Datepicker - Small Mobile */
+@media (max-width: 400px) {
+    .datepicker-popup {
+        padding: 10px;
+        border-radius: 12px 12px 0 0;
+    }
+    .calendar-header { margin-bottom: 8px; }
+    .calendar-title { font-size: 12px; }
+    .nav-btn {
+        width: 28px;
+        height: 28px;
+    }
+    .calendar-grid { gap: 2px; }
+    .weekday { font-size: 8px; margin-bottom: 4px; }
+    .calendar-day {
+        height: 32px;
+        font-size: 10px;
+        border-radius: 4px;
+    }
+}

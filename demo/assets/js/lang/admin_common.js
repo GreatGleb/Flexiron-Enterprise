@@ -10,6 +10,7 @@ translations.ru.side = {
     warehouse: "Склад",
     sales: "Продажи и CRM",
     supply: "Поставки",
+    suppliers: "Поставщики",
     finance: "Финансы",
     settings: "Настройки"
 };
@@ -38,6 +39,7 @@ translations.en.side = {
     warehouse: "Warehouse",
     sales: "Sales & CRM",
     supply: "Procurement",
+    suppliers: "Suppliers",
     finance: "Finance",
     settings: "Settings"
 };
@@ -66,6 +68,7 @@ translations.lt.side = {
     warehouse: "Sandėlis",
     sales: "Pardavimai ir CRM",
     supply: "Tiekimas",
+    suppliers: "Tiekėjai",
     finance: "Finansai",
     settings: "Nustatymai"
 };

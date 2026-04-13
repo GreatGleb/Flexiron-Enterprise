@@ -25,9 +25,9 @@
             {{> icon name="staff-user" class="nav-icon"}}
             <span data-i18n="side.sales">Sales & CRM</span>
         </a></li>
-        <li><a href="#" class="nav-link">
-            {{> icon name="cart-shopping" class="nav-icon"}}
-            <span data-i18n="side.supply">Procurement</span>
+        <li><a href="{{root}}suppliers/list.html" class="nav-link{{#if (eq activeNav 'suppliers_list')}} current{{/if}}">
+            {{> icon name="warehouse-box" class="nav-icon"}}
+            <span data-i18n="side.suppliers">Suppliers</span>
         </a></li>
         <li><a href="#" class="nav-link">
             {{> icon name="profit-coin" class="nav-icon"}}

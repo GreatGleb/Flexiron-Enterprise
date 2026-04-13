@@ -163,3 +163,122 @@
 .multi-select-option input[type="checkbox"]:hover {
     border-color: var(--primary);
 }
+
+/* Multiselect - Tablet */
+@media (max-width: 992px) {
+    .multiselect-trigger,
+    .multi-select-wrap .custom-select-trigger {
+        min-height: 38px;
+        padding: 6px 32px 6px 10px;
+    }
+    .multiselect-list,
+    .multi-select-list {
+        max-height: 250px;
+    }
+    .multiselect-option,
+    .multi-select-option {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+}
+
+/* Multiselect - Mobile */
+@media (max-width: 600px) {
+    .multiselect-trigger,
+    .multi-select-wrap .custom-select-trigger {
+        min-height: 36px;
+        padding: 6px 28px 6px 10px;
+        gap: 4px;
+    }
+    .multiselect-list,
+    .multi-select-list {
+        max-height: 250px;
+    }
+    .multiselect-group-label,
+    .multi-select-group-label {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
+    .multiselect-option,
+    .multi-select-option {
+        padding: 10px 12px;
+        gap: 8px;
+        font-size: 13px;
+    }
+    .multiselect-option input[type="checkbox"],
+    .multi-select-option input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Multiselect - Small Mobile */
+@media (max-width: 400px) {
+    .multiselect-trigger,
+    .multi-select-wrap .custom-select-trigger {
+        min-height: 32px;
+        padding: 5px 24px 5px 8px;
+        gap: 3px;
+    }
+    .multiselect-list,
+    .multi-select-list {
+        max-height: 200px;
+    }
+    .multiselect-group-label,
+    .multi-select-group-label {
+        padding: 4px 8px;
+        font-size: 9px;
+    }
+    .multiselect-option,
+    .multi-select-option {
+        padding: 8px 10px;
+        gap: 6px;
+        font-size: 12px;
+        margin: 1px 2px;
+    }
+    .multiselect-option input[type="checkbox"],
+    .multi-select-option input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+    }
+    .multiselect-count,
+    .option-count {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+}
+
+/* Multiselect - 320px */
+@media (max-width: 320px) {
+    .multiselect-trigger,
+    .multi-select-wrap .custom-select-trigger {
+        min-height: 28px;
+        padding: 4px 20px 4px 6px;
+        gap: 2px;
+    }
+
+    .multiselect-list,
+    .multi-select-list {
+        max-height: 180px;
+    }
+
+    .multiselect-group-label,
+    .multi-select-group-label {
+        padding: 3px 6px;
+        font-size: 8px;
+    }
+
+    .multiselect-option,
+    .multi-select-option {
+        padding: 6px 8px;
+        gap: 5px;
+        font-size: 11px;
+        margin: 1px 2px;
+    }
+
+    .multiselect-option input[type="checkbox"],
+    .multi-select-option input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+    }
+}

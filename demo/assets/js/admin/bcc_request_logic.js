@@ -683,19 +683,19 @@ InBox LT Team`;
 
     function validateBeforeSend() {
         if (state.selectedProducts.length === 0) {
-            showToast(getTranslation('msg.select_product'), 'error');
+            showToast(getTranslation('msg.select_product'));
             return false;
         }
 
         const selectedRecipients = state.recipients.filter(r => r.selected);
         if (selectedRecipients.length === 0) {
-            showToast(getTranslation('msg.select_recipient'), 'error');
+            showToast(getTranslation('msg.select_recipient'));
             return false;
         }
 
         const subject = document.querySelector('.subject-input')?.value;
         if (!subject || subject.trim() === '') {
-            showToast(getTranslation('msg.enter_subject'), 'error');
+            showToast(getTranslation('msg.enter_subject'));
             return false;
         }
 
@@ -953,7 +953,7 @@ InBox LT Team`;
             const unitValue = unitHiddenField?.value || 'kg';
 
             if (!priceValue || parseFloat(priceValue) <= 0) {
-                showToast('Please enter a valid price', 'error');
+                showToast('Please enter a valid price');
                 return;
             }
 
@@ -986,26 +986,22 @@ InBox LT Team`;
     // ============================================
     // TOAST NOTIFICATIONS
     // ============================================
-    function showToast(message, type = 'success') {
+    function showToast(message) {
         let container = document.querySelector('.toast-container');
         if (!container) {
             container = document.createElement('div');
             container.className = 'toast-container';
             document.body.appendChild(container);
         }
-
+        
         const toast = document.createElement('div');
-        toast.className = `toast toast-${type}`;
+        toast.className = 'toast';
         toast.innerHTML = `
-            <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                ${type === 'success' 
-                    ? '<polyline points="20 6 9 17 4 12"/>' 
-                    : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>'}
-            </svg>
+            <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             <span>${message}</span>
         `;
         container.appendChild(toast);
-
+        
         setTimeout(() => toast.classList.add('show'), 50);
         setTimeout(() => {
             toast.classList.remove('show');
