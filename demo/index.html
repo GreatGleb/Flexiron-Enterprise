@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexiron - Metal Center Management Ecosystem</title>
+  <meta name="description" content="Flexiron">
+  <link rel="icon" type="image/svg+xml" href="/flexiron-source/demo/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/flexiron-source/demo/app/index-w7Uy_PTp.js"></script>
+  <link rel="stylesheet" crossorigin href="/flexiron-source/demo/app/index-gANwnM_M.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    (function () {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect !== location.pathname) {
+        history.replaceState(null, '', redirect);
+      }
+    })();
+  </script>
+</body>
+</html>
