@@ -1,0 +1,1 @@
+function n(r,t){const u={ru:"",en:"",lt:""};return t in u&&(u[t]=r),u}function o(r,t){return{ru:(r==null?void 0:r.ru)||"",en:(r==null?void 0:r.en)||"",lt:(r==null?void 0:r.lt)||"",...Object.fromEntries(Object.entries(t).filter(([,u])=>u!==void 0))}}function e(r,t,u){const a=r?{...r}:{ru:"",en:"",lt:""};return u in a&&(a[u]=t),a}export{e as a,o as m,n as t};

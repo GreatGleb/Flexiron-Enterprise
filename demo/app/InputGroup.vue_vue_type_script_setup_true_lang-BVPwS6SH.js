@@ -1,0 +1,1 @@
+import{d as l,c as t,t as o,p as n,X as r,m as a}from"./index-DpJj4SXl.js";const c={class:"input-group"},p={key:0,class:"field-label"},m=l({__name:"InputGroup",props:{label:{}},setup(e){return(s,i)=>(a(),t("div",c,[e.label?(a(),t("label",p,o(e.label),1)):n("",!0),r(s.$slots,"default")]))}});export{m as _};

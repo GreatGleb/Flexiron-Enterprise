@@ -1,0 +1,1 @@
+const o=["weight_per_meter","area_to_weight","pcs_to_weight"];function t(n){return o.includes(n)}const s=["none","ssl","starttls"];function e(n){return s.includes(n)}function r(n){return!!n.host&&!!n.fromEmail&&n.passwordSet}export{o as C,s as M,t as a,e as b,r as i};

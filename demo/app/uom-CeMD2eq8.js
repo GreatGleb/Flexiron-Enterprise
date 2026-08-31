@@ -1,0 +1,1 @@
+function i(r,e,o){const n=e.find(c=>c.id===s(r));if(!n)return null;const u=o;return n.code[u]||n.code.en||n.code.ru||null}function d(r,e,o){return r?i(r,e,o)??t(r):"—"}function t(r){return r.replace(/^uom-/,"")}function f(r){return r?t(r):"pcs"}function s(r){return r.startsWith("uom-")?r:`uom-${r}`}export{i as a,d as b,f as o,s as u};
