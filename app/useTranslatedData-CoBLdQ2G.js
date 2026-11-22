@@ -1,0 +1,1 @@
+import{u as a,aa as e}from"./index-BY2g0WsU.js";function s(){const{locale:t}=a();function u(r){if(!r)return"";const n=t.value;return r[n]?r[n]:e.value?r.ru||r.en||r.lt||"":r.en||r.lt||""}return{tf:u}}export{s as u};

@@ -1,1 +1,0 @@
-import{d as l,f as t,t as o,s as n,a1 as r,q as a}from"./index-Cgw2fVB9.js";const c={class:"input-group"},i={key:0,class:"field-label"},u=l({__name:"InputGroup",props:{label:{}},setup(e){return(s,p)=>(a(),t("div",c,[e.label?(a(),t("label",i,o(e.label),1)):n("",!0),r(s.$slots,"default")]))}});export{u as _};

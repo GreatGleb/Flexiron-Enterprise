@@ -1,1 +1,0 @@
-import{o,a3 as t,$ as d}from"./index-Cgw2fVB9.js";function s(e){const n=()=>e();o(()=>{typeof document>"u"||!document.fonts||(document.fonts.addEventListener("loadingdone",n),t(()=>document.fonts.ready.then(n)))}),d(()=>{typeof document>"u"||!document.fonts||document.fonts.removeEventListener("loadingdone",n)})}export{s as u};
